@@ -1,0 +1,41 @@
+﻿@model DataModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div>
+    <h3 class="display-6">Public Nationality Predictor by Name</h3>
+    <center>
+        <form asp-controller="Home" asp-action="Index">
+            <table>
+                <tr>
+                    <td>Type Name Here: </td>
+                    <td><input type="text" id="txtName" name="Name" /></td>
+                    <td><input type="submit" value="Check" /></td>
+                </tr>
+            </table>
+            <hr />
+        </form>
+    </center>
+    @if (Model != null)
+    {
+
+        @foreach (var country in Model.Country)
+        {
+            <table class="table table-bordered table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th>Country</th>
+                        <th>Probability in %</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@country.country_id</td>
+                        <td>@country.ProbabilityFormated</td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+    }
+</div>
